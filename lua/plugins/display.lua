@@ -5,6 +5,7 @@ local M = {
       transparent = true,
     },
   },
+  { "akinsho/toggleterm.nvim", version = "*", config = true },
 }
 
 return M

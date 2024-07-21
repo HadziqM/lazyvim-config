@@ -38,6 +38,14 @@ M.general = {
     --indent
     ------ just use > or <
     --debugging actions
+    -- ToogleTerm
+    ["<M-h>"] = { ":ToggleTerm size=30 direction=horizontal<CR>", "Terminal Horizontal" },
+    ["<M-i>"] = { ":ToggleTerm direction=float<CR>", "Terminal Float" },
+    ["<M-v>"] = { ":ToggleTerm size=30 direction=vertical<CR>", "Terminal Vertical" },
+    ["<M-t>"] = { ":ToggleTerm direction=tab<CR>", "Terminal Tab" },
+
+    -- Comment
+    ["<leader>/"] = { "gcc", "comment line" },
   },
   v = {
     --copy vscode
@@ -47,6 +55,8 @@ M.general = {
     --copy selected+move
     ["<M-S-Up>"] = { "y`]p`]gv-gv", "copy selected up" },
     ["<M-S-Down>"] = { "yP`[gv-gv", "copy selected down" },
+    --Comment
+    ["<leader>/"] = { "gc", "comment line" },
   },
   i = {
     --vscode copy
@@ -67,12 +77,12 @@ M.general = {
   },
 }
 
-for key, val in pairs(M.general.n) do
-  map("n", key, val[1], { desc = val[2] })
-end
-
 for key, val in pairs(M.general.i) do
   map("i", key, val[1], { desc = val[2] })
+end
+
+for key, val in pairs(M.general.n) do
+  map("n", key, val[1], { desc = val[2] })
 end
 
 for key, val in pairs(M.general.v) do

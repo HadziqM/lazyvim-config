@@ -36,8 +36,8 @@ M.general = {
     ["<M-S-Up>"] = { "yyP<end>", "copy line up" },
     ["<M-S-Down>"] = { "yyp<end>", "copy line down" },
     --indent
-    ------ just use > or <
     --debugging actions
+    ------ just use > or <
     -- ToogleTerm
     ["<M-h>"] = { ":ToggleTerm size=30 direction=horizontal<CR>", "Terminal Horizontal" },
     ["<M-i>"] = { ":ToggleTerm direction=float<CR>", "Terminal Float" },

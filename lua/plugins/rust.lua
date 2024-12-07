@@ -24,21 +24,24 @@ local M = {
           -- rust-analyzer language server configuration
           ["rust-analyzer"] = {
             cargo = {
-              allFeatures = true,
               loadOutDirsFromCheck = true,
               buildScripts = {
                 enable = true,
               },
             },
+            rustfmt = {
+              overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
+            },
             -- Add clippy lints for Rust.
             checkOnSave = true,
             procMacro = {
               enable = true,
-              -- ignored = {
-              --   ["async-trait"] = { "async_trait" },
-              --   ["napi-derive"] = { "napi" },
-              --   ["async-recursion"] = { "async_recursion" },
-              -- },
+              ignored = {
+                ["leptos_macro"] = { "server" },
+                -- ["async-trait"] = { "async_trait" },
+                ["napi-derive"] = { "napi" },
+                ["async-recursion"] = { "async_recursion" },
+              },
             },
           },
         },
@@ -71,6 +74,19 @@ local M = {
       crates.setup(opts)
       crates.show()
     end,
+  },
+  {
+    "rayliwell/tree-sitter-rstml",
+    dependencies = { "nvim-treesitter" },
+    build = ":TSUpdate",
+    config = function()
+      require("tree-sitter-rstml").setup()
+    end,
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    event = "LazyFile",
+    opts = {},
   },
 }
 

@@ -2,11 +2,8 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-local map = vim.keymap.set
-
-local M = {}
-
-M.general = {
+local M = {
+  -- normal mode
   n = {
     --split screen
     ["-"] = { ":split<cr>", "split screen horizontal" },
@@ -47,6 +44,7 @@ M.general = {
     -- Comment
     ["<leader>/"] = { "gcc", "comment line" },
   },
+  -- visual mode
   v = {
     --copy vscode
     --move selected
@@ -58,6 +56,7 @@ M.general = {
     --Comment
     ["<leader>/"] = { "gc", "comment line" },
   },
+  -- insert mode
   i = {
     --vscode copy
     --move line
@@ -75,16 +74,17 @@ M.general = {
     ["<S-Right>"] = { "<C-Right>", "move next word" },
     ["<S-Left>"] = { "<C-Left>", "move prev word" },
   },
+
+  t = {
+    ["<C-Right>"] = { "<C-w><Right>", "hover/change buffer right" },
+    ["<C-Left>"] = { "<C-w><Left>", "hover/chnage buffer left" },
+    ["<C-Up>"] = { "<C-w><Up>", "hover/change buffer up" },
+    ["<C-Down>"] = { "<C-w><Down>", "hover/change buffer down" },
+  },
 }
 
-for key, val in pairs(M.general.i) do
-  map("i", key, val[1], { desc = val[2] })
-end
-
-for key, val in pairs(M.general.n) do
-  map("n", key, val[1], { desc = val[2] })
-end
-
-for key, val in pairs(M.general.v) do
-  map("v", key, val[1], { desc = val[2] })
+for mode, keymaps in pairs(M) do
+  for key, val in pairs(keymaps) do
+    vim.keymap.set(mode, key, val[1], { desc = val[2] })
+  end
 end

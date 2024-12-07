@@ -20,6 +20,9 @@ local M = {
 
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      { "rayliwell/nvim-ts-autotag" },
+    },
     opts = overrides.treesitter,
   },
   {
